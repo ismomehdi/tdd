@@ -92,10 +92,11 @@ function createApp(database: Database) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
       let holiday = new Date(row.holiday);
+      let holiday2 = Temporal.PlainDate.from(row.holiday)
       if (
         date && date2 &&
-        date2.year === holiday.getFullYear() &&
-        date.getMonth() === holiday.getMonth() &&
+        date2.year === holiday2.year &&
+        date2.month === holiday2.month &&
         date.getDate() === holiday.getDate()
       ) {
         return true;
